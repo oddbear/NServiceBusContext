@@ -19,6 +19,10 @@ namespace ApiApplication.Controllers
         [HttpGet("{id}")]
         public async Task<IActionResult> Get(int id)
         {
+            //Alternative is to use wrapper abstraction or custom IMessageSession decorator with hidden:
+            //  var sendOptions = new SendOptions();
+            //  sendOptions.SetHeader("ContextId", _sharedContext.ContextId);
+
             await _messageSession.Send("Host", new MyFirstMessage
             {
                 MessageId = id
